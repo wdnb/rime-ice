@@ -1,0 +1,8 @@
+# 小鹤双拼自定义补丁
+# upstream: https://github.com/wdnb/rime-ice
+patch:
+  switches:
+    - name: traditionalization
+      reset: 0
+    - name: emoji
+      reset: 0
