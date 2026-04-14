@@ -6,3 +6,5 @@ patch:
       reset: 0
     - name: emoji
       reset: 0
+    - name: ascii_punct
+      reset: 1  # 半角标点
