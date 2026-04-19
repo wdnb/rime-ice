@@ -1,0 +1,6 @@
+# default.custom.yaml
+# patch: https://github.com/wdnb/rime-ice
+patch:
+  switcher:
+    hotkeys:
+      - F4
