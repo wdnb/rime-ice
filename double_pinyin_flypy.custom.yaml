@@ -2,6 +2,8 @@
 # upstream: https://github.com/wdnb/rime-ice
 patch:
   switches:
+    - name: ascii_mode
+      reset: 1  # 默认英文
     - name: traditionalization
       reset: 0
     - name: emoji
