@@ -20,6 +20,7 @@ git clone https://github.com/wdnb/rime-ice.git
 ```
 ### 复制内容到 Fcitx5 的 Rime 配置目录
 - 注意路径已变为 Flatpak 的 Rime 用户目录
+```bash
 cp -r rime-ice/* ~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
-
+```
 ### 重新部署 Rime
