@@ -23,7 +23,7 @@ git clone https://github.com/wdnb/rime-ice.git
 ```bash
 cp -r rime-ice/* ~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
 ```
-### 自启动并自替换
+### 自启动并自替换系统自带ibus输入法
 ```bash
 # 增加环境变量
 vim ~/.profile
