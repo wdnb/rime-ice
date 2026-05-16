@@ -23,4 +23,24 @@ git clone https://github.com/wdnb/rime-ice.git
 ```bash
 cp -r rime-ice/* ~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
 ```
-### 重新部署 Rime
+### 自启动并自替换
+```bash
+# 增加环境变量
+vim ~/.profile
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+
+# 开机自启动
+
+mkdir -p ~/.config/autostart
+
+cat > ~/.config/autostart/fcitx5.desktop << 'EOF'
+[Desktop Entry]
+Type=Application
+Name=Fcitx 5
+Exec=flatpak run org.fcitx.Fcitx5
+Icon=org.fcitx.Fcitx5
+X-GNOME-Autostart-enabled=true
+EOF
+```
+### 重启
