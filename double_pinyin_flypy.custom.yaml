@@ -3,7 +3,7 @@
 patch:
   switches:
     - name: ascii_mode
-      reset: 1  # 默认英文
+      reset: 0  # 默认中文
     - name: traditionalization
       reset: 0
     - name: emoji
