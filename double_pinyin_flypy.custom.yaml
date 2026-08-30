@@ -10,3 +10,61 @@ patch:
       reset: 0
     - name: ascii_punct
       reset: 1  # 半角标点
+
+  # 开启前后鼻音模糊音（an/ang、en/eng、in/ing、ian/iang、uan/uang）
+  # 注意：当前 librime 版本不支持 __prepend，这里直接覆盖整个 algebra 数组：
+  # 把 10 条模糊 derive 规则放在双拼 xform 编码链最前面（必须在 xform 之前派生，才能在全拼层面生效）
+  speller/algebra:
+    - derive/an$/ang/
+    - derive/ang$/an/
+    - derive/en$/eng/
+    - derive/eng$/en/
+    - derive/in$/ing/
+    - derive/ing$/in/
+    - derive/ian$/iang/
+    - derive/iang$/ian/
+    - derive/uan$/uang/
+    - derive/uang$/uan/
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - derive/^([aoe])([ioun])$/$1$1$2/
+    - xform/^([aoe])(ng)?$/$1$1$2/
+    - xform/iu$/Ⓠ/
+    - xform/(.)ei$/$1Ⓦ/
+    - xform/uan$/Ⓡ/
+    - xform/[uv]e$/Ⓣ/
+    - xform/un$/Ⓨ/
+    - xform/^sh/Ⓤ/
+    - xform/^ch/Ⓘ/
+    - xform/^zh/Ⓥ/
+    - xform/uo$/Ⓞ/
+    - xform/ie$/Ⓟ/
+    - xform/(.)i?ong$/$1Ⓢ/
+    - xform/ing$|uai$/Ⓚ/
+    - xform/(.)ai$/$1Ⓓ/
+    - xform/(.)en$/$1Ⓕ/
+    - xform/(.)eng$/$1Ⓖ/
+    - xform/[iu]ang$/Ⓛ/
+    - xform/(.)ang$/$1Ⓗ/
+    - xform/ian$/Ⓜ/
+    - xform/(.)an$/$1Ⓙ/
+    - xform/(.)ou$/$1Ⓩ/
+    - xform/[iu]a$/Ⓧ/
+    - xform/iao$/Ⓝ/
+    - xform/(.)ao$/$1Ⓒ/
+    - xform/ui$/Ⓥ/
+    - xform/in$/Ⓑ/
+    - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
+
+  # 关闭英文候选词库：移除 melt_eng（英文输入）和 cn_en（中英混合词汇）
+  engine/translators:
+    - punct_translator
+    - script_translator
+    - lua_translator@*date_translator
+    - lua_translator@*lunar
+    - lua_translator@*uuid
+    - table_translator@custom_phrase
+    - table_translator@radical_lookup
+    - lua_translator@*unicode
+    - lua_translator@*number_translator
+    - lua_translator@*calc_translator
